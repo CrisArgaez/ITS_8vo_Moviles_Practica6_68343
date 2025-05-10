@@ -24,6 +24,10 @@ export type TMenuPokedexContext = {
   moveSelectionDown?: () => void;
   moveSelectionUpRef?: MutableRefObject<() => void>;
   moveSelectionDownRef?: MutableRefObject<() => void>;
+
+  // Mostrar información detallada del Pokémon seleccionado
+  fetchSelectedPokemonInfo?: () => void;
+  fetchSelectedPokemonInfoRef?: MutableRefObject<() => void>;
 };
 
 export const MenuPokedexContext = createContext<TMenuPokedexContext>({
@@ -33,4 +37,5 @@ export const MenuPokedexContext = createContext<TMenuPokedexContext>({
   setMenuOption: () => {},
   moveSelectionUp: () => {},
   moveSelectionDown: () => {},
+  fetchSelectedPokemonInfo: () => {},
 });

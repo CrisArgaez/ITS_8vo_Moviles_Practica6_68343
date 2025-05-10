@@ -5,22 +5,38 @@ import {
 } from '@ionic/react';
 import React, { useContext } from 'react';
 
-import { EPokedexMenuOption, EPokedexScreen, MenuPokedexContext } from '../contexts/MenuPokedexContext';
+import {
+  EPokedexMenuOption,
+  EPokedexScreen,
+  MenuPokedexContext
+} from '../contexts/MenuPokedexContext';
 import '../theme/variables.css';
 import { Cross } from './Buttons/Cross';
 
 const Pokedex: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { menuOption, screen, setMenuOption, setScreen } = useContext(MenuPokedexContext);
+  const {
+    menuOption,
+    screen,
+    setMenuOption,
+    setScreen,
+    fetchSelectedPokemonInfo
+  } = useContext(MenuPokedexContext);
+
   const router = useIonRouter();
-  
+
   const onBigBlueButtonClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
     if (screen === EPokedexScreen.MENU) {
-      e.preventDefault();
       const path = EPokedexMenuOption[menuOption].toLowerCase();
-      setScreen(menuOption as unknown as EPokedexScreen)
+      setScreen(menuOption as unknown as EPokedexScreen);
       router.push(`/${path}`);
     }
-  }
+
+    if (screen === EPokedexScreen.POKEDEX && fetchSelectedPokemonInfo) {
+      fetchSelectedPokemonInfo();
+    }
+  };
 
   const toggleScreen = () => {
     if (screen === EPokedexScreen.EXIT) {
@@ -31,8 +47,8 @@ const Pokedex: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       setScreen(EPokedexScreen.EXIT);
       router.push('/exit');
     }
-  }
-  
+  };
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -66,8 +82,7 @@ const Pokedex: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 id="buttonbottomPicture"
                 className="gameboy-button"
                 onClick={toggleScreen}
-              >
-              </div>
+              ></div>
               <div id="speakers">
                 <div className="sp"></div>
                 <div className="sp"></div>
@@ -79,8 +94,7 @@ const Pokedex: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               id="bigbluebutton"
               className="gameboy-button"
               onClick={onBigBlueButtonClick}
-            >
-            </div>
+            ></div>
             <div id="barbutton1" className="gameboy-button"></div>
             <div id="barbutton2" className="gameboy-button"></div>
             <Cross />

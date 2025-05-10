@@ -13,8 +13,9 @@ export const MenuPokedexProvider = ({
   const moveUpRef = useRef<() => void>(() => {});
   const moveDownRef = useRef<() => void>(() => {});
 
-  // Referencia para mostrar información detallada del Pokémon
-  const fetchInfoRef = useRef<() => void>(() => {});
+  // Referencias para mostrar información detallada
+  const fetchPokemonInfoRef = useRef<() => void>(() => {});
+  const fetchItemInfoRef = useRef<() => void>(() => {});
 
   return (
     <MenuPokedexContext.Provider
@@ -27,8 +28,10 @@ export const MenuPokedexProvider = ({
         moveSelectionDown: () => moveDownRef.current(),
         moveSelectionUpRef: moveUpRef,
         moveSelectionDownRef: moveDownRef,
-        fetchSelectedPokemonInfo: () => fetchInfoRef.current(),
-        fetchSelectedPokemonInfoRef: fetchInfoRef,
+        fetchSelectedPokemonInfo: () => fetchPokemonInfoRef.current(),
+        fetchSelectedPokemonInfoRef: fetchPokemonInfoRef,
+        fetchSelectedItemInfo: () => fetchItemInfoRef.current(),
+        fetchSelectedItemInfoRef: fetchItemInfoRef,
       }}
     >
       {children}

@@ -19,7 +19,8 @@ const Pokedex: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     screen,
     setMenuOption,
     setScreen,
-    fetchSelectedPokemonInfo
+    fetchSelectedPokemonInfo,
+    fetchSelectedItemInfo
   } = useContext(MenuPokedexContext);
 
   const router = useIonRouter();
@@ -35,6 +36,10 @@ const Pokedex: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     if (screen === EPokedexScreen.POKEDEX && fetchSelectedPokemonInfo) {
       fetchSelectedPokemonInfo();
+    }
+
+    if (screen === EPokedexScreen.PACK && fetchSelectedItemInfo) {
+      fetchSelectedItemInfo();
     }
   };
 

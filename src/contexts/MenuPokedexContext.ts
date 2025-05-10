@@ -19,15 +19,19 @@ export type TMenuPokedexContext = {
   setScreen: (option: EPokedexScreen) => void;
   setMenuOption: (option: EPokedexMenuOption) => void;
 
-  // Movimiento de selección en lista de pokemones (referencias dinámicas)
+  // Movimiento de selección en listas (pokemones y objetos)
   moveSelectionUp?: () => void;
   moveSelectionDown?: () => void;
   moveSelectionUpRef?: MutableRefObject<() => void>;
   moveSelectionDownRef?: MutableRefObject<() => void>;
 
-  // Mostrar información detallada del Pokémon seleccionado
+  // Detalle Pokémon
   fetchSelectedPokemonInfo?: () => void;
   fetchSelectedPokemonInfoRef?: MutableRefObject<() => void>;
+
+  // Detalle Objeto
+  fetchSelectedItemInfo?: () => void;
+  fetchSelectedItemInfoRef?: MutableRefObject<() => void>;
 };
 
 export const MenuPokedexContext = createContext<TMenuPokedexContext>({
@@ -38,4 +42,5 @@ export const MenuPokedexContext = createContext<TMenuPokedexContext>({
   moveSelectionUp: () => {},
   moveSelectionDown: () => {},
   fetchSelectedPokemonInfo: () => {},
+  fetchSelectedItemInfo: () => {},
 });

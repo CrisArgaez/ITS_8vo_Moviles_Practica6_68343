@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, MutableRefObject } from "react";
 
 export enum EPokedexMenuOption {
   POKEDEX = 1,
@@ -18,11 +18,19 @@ export type TMenuPokedexContext = {
   menuOption: EPokedexMenuOption;
   setScreen: (option: EPokedexScreen) => void;
   setMenuOption: (option: EPokedexMenuOption) => void;
-}
+
+  // Movimiento de selección en lista de pokemones (referencias dinámicas)
+  moveSelectionUp?: () => void;
+  moveSelectionDown?: () => void;
+  moveSelectionUpRef?: MutableRefObject<() => void>;
+  moveSelectionDownRef?: MutableRefObject<() => void>;
+};
 
 export const MenuPokedexContext = createContext<TMenuPokedexContext>({
   screen: EPokedexScreen.MENU,
   menuOption: EPokedexMenuOption.POKEDEX,
   setScreen: () => {},
   setMenuOption: () => {},
+  moveSelectionUp: () => {},
+  moveSelectionDown: () => {},
 });

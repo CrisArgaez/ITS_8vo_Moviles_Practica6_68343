@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { EPokedexScreen, MenuPokedexContext } from "../../contexts/MenuPokedexContext";
 
 export const Cross = () => {
-  const { screen, menuOption, setMenuOption } = useContext(MenuPokedexContext);
+  const { screen, menuOption, setMenuOption, moveSelectionUp, moveSelectionDown } = useContext(MenuPokedexContext);
 
   return (
     <div id="cross">
@@ -16,6 +16,8 @@ export const Cross = () => {
           if (screen === EPokedexScreen.MENU) {
             const newOption = menuOption - 1 < 1 ? 3 : menuOption - 1
             setMenuOption(newOption)
+          } else if (screen === EPokedexScreen.POKEDEX && moveSelectionUp) {
+            moveSelectionUp();
           }
         }}
       >
@@ -34,6 +36,8 @@ export const Cross = () => {
           if (screen === EPokedexScreen.MENU) {
             const newOption = menuOption + 1 > 3 ? 1 : menuOption + 1
             setMenuOption(newOption)
+          } else if (screen === EPokedexScreen.POKEDEX && moveSelectionDown) {
+            moveSelectionDown();
           }
         }}
       >
